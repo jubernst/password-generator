@@ -20,10 +20,10 @@ function getRndUppercase() {
 // generate a random Password
 function generatePassword() {
   // Initialize all character choices as false
-  var notLowercase = true;
-  var notUppercase = true;
-  var notNumeric = true;
-  var notSpecial = true;
+  var isLowercase = false;
+  var isUppercase = false;
+  var isNumeric = false;
+  var isSpecial = false;
   var pword;
 
   window.alert("Let's make your password!");
@@ -36,70 +36,69 @@ function generatePassword() {
     len = window.prompt("Please choose a number between 8 and 128:");
   }
   
-  // Ask the user which characters they would like to include
+  // Ask the user which character types they would like to include
   // Loop while no options have been selected
   do {
-    console.log("You're in the loop!");
 
     if(window.confirm("Would you like your password to include lowercase letters?")){
       txt = "You chose to include lowercase"
-      notLowercase = false;
+      isLowercase = true;
     } else {
       txt = "You chose not to include lowercase"
-      notLowercase = true;
+      isLowercase = false;
     };
 
     if (window.confirm("Would you like your password to include uppercase letters?")){
       txt = "You chose to include uppercase letters"
-      notUppercase = false;
+      isUppercase = true;
     } else {
       txt = "You chose not to include uppercase letters"
-      notUppercase = true;
+      isUppercase = false;
     };
 
     if (window.confirm("Would you like your password to include numbers?")){
       txt = "You chose to include numbers"
-      notNumeric = false;
+      isNumeric = true;
     } else {
       txt = "You chose not to include numbers"
-      notNumeric = true;
+      isNumeric = false;
     };
 
     if (window.confirm("Would you like your password to include special characters?")){
       txt = "You chose to include special characters"
-      notSpecial = false;
+      isSpecial = true;
     } else {
       txt = "You chose not to special characters"
-      notSpecial = true;
+      isSpecial = false;
     };
 
     // Catch if no options have been selected, repeat the prompts
-    if (notLowercase == notUppercase == notNumeric == notSpecial == true) {
+    if (isLowercase === false && isUppercase === false && isNumeric === false && isSpecial === false) {
       window.alert("Error: You must select one of the options.")
-    } else break; // Do not loop if the user has selected an option
+    } else break; // Do not loop if the user has chosen to include one or more character types 
   }
-  while (notLowercase == notUppercase == notNumeric == notSpecial == true);
+  while (isLowercase === false && isUppercase === false && isNumeric === false && isSpecial === false);
   
   // Randomly generate a string with the requested characters
   // Loop while the string is under the requested length
   do {
 
-    if (notSpecial == false) {
+    if (isSpecial === true) {
       // Add a random special character to the string
       pword.concat(getRndSpecial);
     }
 
-    if (notNumeric == false) {
+    if (isNumeric === true) {
       // Add a random numeric character to the string
       pword.concat(getRndNum);
     }
 
-    if (notLowercase == false) {
+    if (isLowercase === true) {
       // Add a random lowercase letter to the string
       pword.concat(getRndLowercase);
     }
 
-    if (notUppercase == false) {
+    if (isUppercase === true) {
       // Add a random uppercase letter to the string
       pword.concat(getRndUppercase);
     }
@@ -111,9 +110,6 @@ function generatePassword() {
   
   // return the password
   return pword;
-  }
-  
-  // return that string
 }
 
 // Write password to the #password input
