@@ -2,7 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 function getRndSpecial() {
-  return Math.floor(Math.random() * 13) + 33;
+  return String.fromCharCode(Math.floor(Math.random() * 13) + 33);
 }
 
 function getRndNum() {
@@ -10,11 +10,11 @@ function getRndNum() {
 }
 
 function getRndLowercase() {
-  return Math.floor(Math.random() * 25) + 97;
+  return String.fromCharCode(Math.floor(Math.random() * 25) + 97);
 }
 
 function getRndUppercase() {
-  return Math.floor(Math.random() * 25) + 65;
+  return String.fromCharCode(Math.floor(Math.random() * 25) + 65);
 }
 
 // generate a random Password
@@ -24,20 +24,20 @@ function generatePassword() {
   var notUppercase = true;
   var notNumeric = true;
   var notSpecial = true;
+  var pword;
 
   window.alert("Let's make your password!");
 
   // Prompt for password length between 8 and 128 characters
   var len = window.prompt("How long would you like your password to be? Please enter a number between 8 and 128:");
   
-  // Get the length for the password
+  // If the number entered is not between 8 and 128, or isn't a number, prompt again
   while (len < 8 || len > 128 || isNaN(len)){
     len = window.prompt("Please choose a number between 8 and 128:");
   }
-
   
-  
-  // Ask for the character options
+  // Ask the user which characters they would like to include
+  // Loop while no options have been selected
   do {
     console.log("You're in the loop!");
 
@@ -76,25 +76,41 @@ function generatePassword() {
     // Catch if no options have been selected, repeat the prompts
     if (notLowercase == notUppercase == notNumeric == notSpecial == true) {
       window.alert("Error: You must select one of the options.")
-    } else break;
+    } else break; // Do not loop if the user has selected an option
   }
   while (notLowercase == notUppercase == notNumeric == notSpecial == true);
   
-  // Generate a random string of characters based on those variables
-  // Iterate to make the password as long as requested
-  while ()
-    // If the chose to add lowercase letters, add a lowercase letter
-    // I want to check this once, not on every loop... ugh
+  // Randomly generate a string with the requested characters
+  // Loop while the string is under the requested length
+  do {
+
     if (notSpecial == false) {
-      pword[i].push(getRndSpecial);
-      i++;
+      // Add a random special character to the string
+      pword.concat(getRndSpecial);
     }
 
     if (notNumeric == false) {
-      pword[i].push(getRndNum);
-      i++;
+      // Add a random numeric character to the string
+      pword.concat(getRndNum);
     }
 
+    if (notLowercase == false) {
+      // Add a random lowercase letter to the string
+      pword.concat(getRndLowercase);
+    }
+
+    if (notUppercase == false) {
+      // Add a random uppercase letter to the string
+      pword.concat(getRndUppercase);
+    }
+
+  } while (pword.length <= len);
+
+  // Slice the string to the desired length
+  pword.slice(0, len+1);
+  
+  // return the password
+  return pword;
   }
   
   // return that string
