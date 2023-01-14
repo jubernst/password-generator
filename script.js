@@ -3,6 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 // generate a random Password
 function generatePassword() {
+  // Initialize all character choices as false
   var isLowercase = false;
   var isUppercase = false;
   var isNumeric = false;
@@ -17,11 +18,11 @@ function generatePassword() {
     len = window.prompt("Please choose a number between 8 and 128:");
   }
   
-  //while ((isLowercase == isUppercase == isNumeric == isSpecial == false)) {
+  // 
+  while ((isLowercase == isUppercase == isNumeric == isSpecial == false)) {
 
     // Would rather do this on one page so that these are all buttons. and i can easily check if none of them are selected
-    // Prompt "Do you want to include lowercase letters?" store as boolen
-    // either in the same prompt or in a box, prompt for uppercase, numbers and special characters
+    // Prompt for lowercase letters
     if(window.confirm("Would you like your password to include lowercase letters?")){
       txt = "You chose to include lowercase"
       isLowercase = true;
@@ -54,12 +55,14 @@ function generatePassword() {
       isSpecial = false;
     };
 
+    // Catch if no options have been selected, repeat the prompts
     if ((isLowercase == isUppercase == isNumeric == isSpecial == false)) {
       window.alert("Error: You must select one of the options.")
     }
-  //}
+  }
   
   // Generate a random string of characters based on those variables
+  for (var i = 0; i < )
   
   // return that string
 }
