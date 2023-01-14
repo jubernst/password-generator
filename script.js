@@ -3,6 +3,7 @@ var generateBtn = document.querySelector("#generate");
 
 function getRndSpecial() {
   var specChar = String.fromCharCode(Math.floor(Math.random() * 13) + 33);
+  console.log("Look" + specChar);
   return specChar;
 }
 
@@ -29,7 +30,7 @@ function generatePassword() {
   var isUppercase = false;
   var isNumeric = false;
   var isSpecial = false;
-  // Initialize the 
+  // Initialize the string that will store the password
   var rndString = "";
 
   window.alert("Let's make your password!");
@@ -90,22 +91,22 @@ function generatePassword() {
   for (var i = 0; i < len; i++) {
     if (isSpecial === true) {
       // Add a random special character to the end of the string
-      rndString.concat(getRndSpecial);
+      rndString = rndString + getRndSpecial();
     }
 
     if (isNumeric === true) {
       // Add a random numeric character to the string
-      rndString.concat(getRndNum);
+      rndString = rndString + getRndNum();
     }
 
     if (isLowercase === true) {
       // Add a random lowercase letter to the string
-      rndString.concat(getRndLowercase);
+      rndString = rndString + getRndLowercase();
     }
 
     if (isUppercase === true) {
       // Add a random uppercase letter to the string
-      rndString.concat(getRndUppercase);
+      rndString = rndString + getRndUppercase();
     }
 
     // End the loop if the string is at or longer than the requested length
