@@ -2,29 +2,34 @@
 var generateBtn = document.querySelector("#generate");
 
 function getRndSpecial() {
-  console.log(String.fromCharCode(Math.floor(Math.random() * 13) + 33));
-  return String.fromCharCode(Math.floor(Math.random() * 13) + 33);
+  var specChar = String.fromCharCode(Math.floor(Math.random() * 13) + 33);
+  return specChar;
 }
 
 function getRndNum() {
-  return Math.floor(Math.random() * 10);
+  var numChar = Math.floor(Math.random() * 10);
+  return numChar;
 }
 
 function getRndLowercase() {
-  return String.fromCharCode(Math.floor(Math.random() * 25) + 97);
+  var lowChar = String.fromCharCode(Math.floor(Math.random() * 25) + 97);
+  return lowChar;
 }
 
 function getRndUppercase() {
-  return String.fromCharCode(Math.floor(Math.random() * 25) + 65);
+  var upChar = String.fromCharCode(Math.floor(Math.random() * 25) + 65);
+  return upChar;
 }
 
-// generate a random Password
+// Generate a random Password
 function generatePassword() {
-  // Initialize all character choices as false
+
+  // Initialize all choices as false
   var isLowercase = false;
   var isUppercase = false;
   var isNumeric = false;
   var isSpecial = false;
+  // Initialize the 
   var rndString = "";
 
   window.alert("Let's make your password!");
@@ -80,12 +85,11 @@ function generatePassword() {
   }
   while (isLowercase === false && isUppercase === false && isNumeric === false && isSpecial === false);
   
-  // Randomly generate a string with the requested characters
+  // Generate a string of random characters
   // Loop while the string is under the requested length
-  do {
-
+  for (var i = 0; i < len; i++) {
     if (isSpecial === true) {
-      // Add a random special character to the string
+      // Add a random special character to the end of the string
       rndString.concat(getRndSpecial);
     }
 
@@ -104,9 +108,12 @@ function generatePassword() {
       rndString.concat(getRndUppercase);
     }
 
-  } while (rndString.length < len);
+    // End the loop if the string is at or longer than the requested length
+    if (rndString.length >= len){break};
+  }
   
   // Return a slice of the string with the requested length
+  window.alert("Your password is " + rndString);
   return rndString.slice(0, len);
 }
 
