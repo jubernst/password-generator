@@ -4,65 +4,68 @@ var generateBtn = document.querySelector("#generate");
 // generate a random Password
 function generatePassword() {
   // Initialize all character choices as false
-  var isLowercase = false;
-  var isUppercase = false;
-  var isNumeric = false;
-  var isSpecial = false;
+  var notLowercase = true;
+  var notUppercase = true;
+  var notNumeric = true;
+  var notSpecial = true;
 
   window.alert("Let's make your password!");
 
   // Prompt for password length between 8 and 128 characters
   var len = window.prompt("How long would you like your password to be? Please enter a number between 8 and 128:");
   
+  // Get the length for the password
   while (len < 8 || len > 128 || isNaN(len)){
     len = window.prompt("Please choose a number between 8 and 128:");
   }
   
-  // 
-  while ((isLowercase == isUppercase == isNumeric == isSpecial == false)) {
+  // Ask for the character options
+  do {
+    console.log("You're in the loop!");
 
-    // Would rather do this on one page so that these are all buttons. and i can easily check if none of them are selected
-    // Prompt for lowercase letters
     if(window.confirm("Would you like your password to include lowercase letters?")){
       txt = "You chose to include lowercase"
-      isLowercase = true;
+      notLowercase = false;
     } else {
       txt = "You chose not to include lowercase"
-      isLowercase = false;
+      notLowercase = true;
     };
 
     if (window.confirm("Would you like your password to include uppercase letters?")){
       txt = "You chose to include uppercase letters"
-      isUppercase = true;
+      notUppercase = false;
     } else {
       txt = "You chose not to include uppercase letters"
-      isUppercase = false;
+      notUppercase = true;
     };
 
     if (window.confirm("Would you like your password to include numbers?")){
       txt = "You chose to include numbers"
-      isNumeric = true;
+      notNumeric = false;
     } else {
       txt = "You chose not to include numbers"
-      isNumeric = false;
+      notNumeric = true;
     };
 
     if (window.confirm("Would you like your password to include special characters?")){
       txt = "You chose to include special characters"
-      isSpecial = true;
+      notSpecial = false;
     } else {
       txt = "You chose not to special characters"
-      isSpecial = false;
+      notSpecial = true;
     };
 
     // Catch if no options have been selected, repeat the prompts
-    if ((isLowercase == isUppercase == isNumeric == isSpecial == false)) {
+    if (notLowercase == notUppercase == notNumeric == notSpecial == true) {
       window.alert("Error: You must select one of the options.")
     }
   }
+  while (notLowercase == notUppercase == notNumeric == notSpecial == true);
   
   // Generate a random string of characters based on those variables
-  for (var i = 0; i < )
+  for (var i = 0; i < len; i++) {
+
+  }
   
   // return that string
 }
