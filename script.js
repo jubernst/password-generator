@@ -1,6 +1,22 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+function getRndSpecial() {
+  return Math.floor(Math.random() * 13) + 33;
+}
+
+function getRndNum() {
+  return Math.floor(Math.random() * 10);
+}
+
+function getRndLowercase() {
+  return Math.floor(Math.random() * 25) + 97;
+}
+
+function getRndUppercase() {
+  return Math.floor(Math.random() * 25) + 65;
+}
+
 // generate a random Password
 function generatePassword() {
   // Initialize all character choices as false
@@ -18,6 +34,8 @@ function generatePassword() {
   while (len < 8 || len > 128 || isNaN(len)){
     len = window.prompt("Please choose a number between 8 and 128:");
   }
+
+  
   
   // Ask for the character options
   do {
@@ -58,12 +76,24 @@ function generatePassword() {
     // Catch if no options have been selected, repeat the prompts
     if (notLowercase == notUppercase == notNumeric == notSpecial == true) {
       window.alert("Error: You must select one of the options.")
-    }
+    } else break;
   }
   while (notLowercase == notUppercase == notNumeric == notSpecial == true);
   
   // Generate a random string of characters based on those variables
-  for (var i = 0; i < len; i++) {
+  // Iterate to make the password as long as requested
+  while ()
+    // If the chose to add lowercase letters, add a lowercase letter
+    // I want to check this once, not on every loop... ugh
+    if (notSpecial == false) {
+      pword[i].push(getRndSpecial);
+      i++;
+    }
+
+    if (notNumeric == false) {
+      pword[i].push(getRndNum);
+      i++;
+    }
 
   }
   
