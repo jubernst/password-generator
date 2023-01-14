@@ -2,6 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 function getRndSpecial() {
+  console.log(String.fromCharCode(Math.floor(Math.random() * 13) + 33));
   return String.fromCharCode(Math.floor(Math.random() * 13) + 33);
 }
 
@@ -24,7 +25,7 @@ function generatePassword() {
   var isUppercase = false;
   var isNumeric = false;
   var isSpecial = false;
-  var pword;
+  var rndString = "";
 
   window.alert("Let's make your password!");
 
@@ -75,7 +76,7 @@ function generatePassword() {
     // Catch if no options have been selected, repeat the prompts
     if (isLowercase === false && isUppercase === false && isNumeric === false && isSpecial === false) {
       window.alert("Error: You must select one of the options.")
-    } else break; // Do not loop if the user has chosen to include one or more character types 
+    } else break; // Do not loop if the user has chosen to include one or more character types
   }
   while (isLowercase === false && isUppercase === false && isNumeric === false && isSpecial === false);
   
@@ -85,31 +86,28 @@ function generatePassword() {
 
     if (isSpecial === true) {
       // Add a random special character to the string
-      pword.concat(getRndSpecial);
+      rndString.concat(getRndSpecial);
     }
 
     if (isNumeric === true) {
       // Add a random numeric character to the string
-      pword.concat(getRndNum);
+      rndString.concat(getRndNum);
     }
 
     if (isLowercase === true) {
       // Add a random lowercase letter to the string
-      pword.concat(getRndLowercase);
+      rndString.concat(getRndLowercase);
     }
 
     if (isUppercase === true) {
       // Add a random uppercase letter to the string
-      pword.concat(getRndUppercase);
+      rndString.concat(getRndUppercase);
     }
 
-  } while (pword.length <= len);
-
-  // Slice the string to the desired length
-  pword.slice(0, len+1);
+  } while (rndString.length < len);
   
-  // return the password
-  return pword;
+  // Return a slice of the string with the requested length
+  return rndString.slice(0, len);
 }
 
 // Write password to the #password input
